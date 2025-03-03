@@ -1,0 +1,10 @@
+
+.cardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust card size */
+    width: 80%;
+    justify-items: auto;
+    gap: 20px; /* Increase spacing between cards */
+    padding: 20px; /* Add padding around the container */
+}
+

@@ -1,0 +1,12 @@
+.MemoryCard {
+    flex: 1 1 calc(100% / 2 ); /* Default size for minimum 6 cards */
+    /*max-width: calc(100% / 2); !* Prevent cards from growing too large *!*/
+    aspect-ratio: 1; /* Maintain square shape (optional) */
+    background-color: lightgray; /* Default background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+}
