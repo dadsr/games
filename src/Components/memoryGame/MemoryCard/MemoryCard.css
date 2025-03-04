@@ -1,12 +1,44 @@
-.MemoryCard {
-    flex: 1 1 calc(100% / 2 ); /* Default size for minimum 6 cards */
-    /*max-width: calc(100% / 2); !* Prevent cards from growing too large *!*/
-    aspect-ratio: 1; /* Maintain square shape (optional) */
-    background-color: lightgray; /* Default background color */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    cursor: pointer;
+.memory-card {
+    width: 100px;
+    height: 150px;
+    perspective: 1000px;
+    margin: 1rem;
+}
+
+.memory-card > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform 0.5s ease-in-out;
+}
+
+.card-back {
+    background-color: gray;
+    transform: rotateY(0deg); /* Default: show back side */
+}
+
+.card-front {
+    background-color: lightblue;
+    transform: rotateY(180deg); /* Hidden initially */
+}
+
+.memory-card.matched {
+    opacity: 1;
+    animation: fadeOut 1s ease-out forwards;
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+.memory-card.flipped .card-back {
+    transform: rotateY(180deg); /* Hide back side */
+}
+
+.memory-card.flipped .card-front {
+    transform: rotateY(0deg); /* Show front side */
 }

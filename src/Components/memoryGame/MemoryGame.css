@@ -1,10 +1,17 @@
 
+
 .cardContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust card size */
-    width: 80%;
-    justify-items: auto;
-    gap: 20px; /* Increase spacing between cards */
-    padding: 20px; /* Add padding around the container */
+    grid-template-columns: caaaaaaaaaa;
+
+    padding: 20px;
+}
+.cardContainer > * {
+    flex: 0 0 calc(var(--columns)); /* Use --columns for dynamic sizing */
+    max-width: calc(var(--columns)); /* Prevent cards from exceeding their space */
 }
 
+.bord{
+    display: flex;
+    flex-wrap:wrap;
+}
