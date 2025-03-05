@@ -19,20 +19,26 @@
 }
 
 .card-front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: lightblue;
     transform: rotateY(180deg); /* Hidden initially */
 }
-
+.card-data{
+    font-size: 4rem;
+    color: black;
+}
 .memory-card.matched {
     opacity: 1;
-    animation: fadeOut 1s ease-out forwards;
+    animation: fadeOut 2s ease-out forwards;
 }
 @keyframes fadeOut {
     from {
         opacity: 1;
     }
     to {
-        opacity: 0;
+        opacity: 0.1;
     }
 }
 .memory-card.flipped .card-back {
