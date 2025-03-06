@@ -10,6 +10,9 @@ interface Item {
     value1: string;
     value2: string;
 }
+
+interface
+
 const maxItems:number = 20;
 const minItems:number = 3;
 
@@ -34,12 +37,20 @@ export function EditContent(): React.JSX.Element {
     }
     const deleteItem = (id: number) => {
         if(items.length > minItems)
-        setItems(items.filter(item => item.id !== id));
+            setItems(items.filter(item => item.id !== id));
     }
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const {name, value} = event.target;
+        setActivity((prevActivity) =>({
+            ...prevActivity,
+            [name]: value,
+            lastUpdated: new Date().toLocaleString(),
+        }));
+    };
 
     return (
         <div className="edit-content">
-
             <label className="activity-title">Activity Title:</label>
             <input
                 type="text"
@@ -49,8 +60,6 @@ export function EditContent(): React.JSX.Element {
                 required
             />
             <span className = "last-modified">${activity.lastUpdated}</span>
-
-
         </div>
     );
 }
