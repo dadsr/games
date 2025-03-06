@@ -1,5 +1,7 @@
 import "./EditContent.css";
 import {useState} from "react";
+import {DataTypesEnum} from "../../utils/DataTypsEnum.ts";
+
 interface Activity {
     title: string;
     items: Item[];
@@ -7,24 +9,34 @@ interface Activity {
 }
 interface Item {
     id: number;
-    value1: string;
-    value2: string;
+    data1: Data;
+    data2: Data;
 }
 
-interface
+interface Data {
+    value:string;
+    type: DataTypesEnum;
+}
 
 const maxItems:number = 20;
 const minItems:number = 3;
 
 
 export function EditContent(): React.JSX.Element {
-    const [activity,setActivity] = useState<Activity>();
     const [selectedOption, setSelectedOption] = useState<'identical' | 'different'>('identical');
+
+    const [activity,setActivity] = useState<Activity>();
+    const [data,setData] = useState<Data>({"value":"","type":DataTypesEnum.TEXT});
     const [items, setItems] = useState<Item[]> ([
-        { id: 1, value1: '', value2: '' },
-        { id: 2, value1: '', value2: '' },
-        { id: 3, value1: '', value2: '' }
+        { id: 1, value1: data, value2: data },
+        { id: 2, value1: data, value2: data },
+        { id: 3, value1: data, value2: data }
     ]);
+
+
+    const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedOption(event.target.value as 'single' | 'pair');
+    };
 
     const addNewItem = () => {
         if (items.length < maxItems) {
