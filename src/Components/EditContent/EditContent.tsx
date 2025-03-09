@@ -1,22 +1,10 @@
 import "./EditContent.css";
 import {useState} from "react";
 import {DataTypesEnum} from "../../utils/DataTypsEnum.ts";
-
-interface Activity {
-    title: string;
-    items: Item[];
-    lastUpdated: string;
-}
-interface Item {
-    id: number;
-    data1: Data;
-    data2: Data;
-}
-
-interface Data {
-    value:string;
-    type: DataTypesEnum;
-}
+import {Activity} from "../../models/Activity.ts";
+import {WebSocket} from "vite";
+import Data = WebSocket.Data;
+import {Item} from "../../models/Item.ts";
 
 const maxItems:number = 20;
 const minItems:number = 3;
