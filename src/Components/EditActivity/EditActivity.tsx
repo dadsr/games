@@ -1,16 +1,27 @@
-import "./EditContent.css";
+import "./EditActivity.css";
 import {useState} from "react";
-import {DataTypesEnum} from "../../utils/DataTypsEnum.ts";
+import {DataTypesEnum} from "../../models/DataTypesEnum.ts";
 import {Activity} from "../../models/Activity.ts";
-import {WebSocket} from "vite";
-import Data = WebSocket.Data;
 import {Item} from "../../models/Item.ts";
+import {Data} from "../../models/Data.ts";
+import {useLocation} from "react-router-dom";
 
 const maxItems:number = 20;
 const minItems:number = 3;
 
+interface LocationState {
+    state: {
+        activity: Activity;
+        mode: string;
+    };
+}
 
-export function EditContent(): React.JSX.Element {
+
+export function EditActivity(): React.JSX.Element {
+    const location = useLocation() as LocationState;
+    const {activity, mode} = location.state;
+
+
     const [selectedOption, setSelectedOption] = useState<'identical' | 'different'>('identical');
 
     const [activity,setActivity] = useState<Activity>();

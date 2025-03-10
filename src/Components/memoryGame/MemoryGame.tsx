@@ -11,7 +11,7 @@ const minColumns:number = 3;
 
 export function MemoryGame(): React.JSX.Element {
 
-    const [gameData, setGameData] = useState<{ data: string; color: string }[]>([]);
+    // const [gameData, setGameData] = useState<{ data: string; color: string }[]>([]);
     const columns = Math.min(maxColumns,Math.max(minColumns, Math.floor(Math.sqrt(gameData.length))));
 
     const [firstCard, setFirstCard] = useState(defaultState);
@@ -21,12 +21,12 @@ export function MemoryGame(): React.JSX.Element {
     const [matchedCards, setMatchedCards] = useState<string[]>([]);
     const [moves, setMoves] = useState(0);
 
-    useEffect(() => {
-        const combinedData = shuffle(
-            [...items, ...items].map((data) => ({data, color: getRandomColor(),}))
-        );
-        setGameData(combinedData);
-    }, [items]);
+    // useEffect(() => {
+    //     const combinedData = shuffle(
+    //         [...items, ...items].map((data) => ({data, color: getRandomColor(),}))
+    //     );
+    //     setGameData(combinedData);
+    // }, [items]);
 
 
     const handleCardClick = (index: number, item:string)=> {
