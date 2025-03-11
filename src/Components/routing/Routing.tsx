@@ -1,6 +1,6 @@
 import {Route, Routes} from "react-router-dom";
-import {PageNotFound} from "../Errors/PageNotFound.tsx";
-import {MyActivities} from "../MyActivities/MyActivities.tsx";
+import {PageNotFound} from "../errors/PageNotFound.tsx";
+import {MyActivities} from "../Activities/MyActivities/MyActivities.tsx";
 import {EditActivity} from "../EditActivity/EditActivity.tsx";
 import {JSX} from "react";
 

@@ -1,8 +1,8 @@
 import {Item} from "./Item.ts";
 import {User} from "./User.ts";
-import {GameTypesEnum} from "./GameTypesEnum.ts";
-import {DataTypesEnum} from "./DataTypesEnum.ts";
-import {DataModeEnum} from "./DataModeEnum.ts";
+import {GameTypesEnum} from "./enums/GameTypesEnum.ts";
+import {DataTypesEnum} from "./enums/DataTypesEnum.ts";
+import {DataModeEnum} from "./enums/DataModeEnum.ts";
 
 export class Activity {
     id: number;

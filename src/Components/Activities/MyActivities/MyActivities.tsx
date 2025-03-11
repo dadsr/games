@@ -1,9 +1,9 @@
 import "./MyActivities.css";
 import {JSX, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {Activity} from "../../models/Activity.ts";
-import activityServices from "../../services/ActivityServices.ts";
-// import {Sorts} from "../Filters/Sorts.tsx";
+import {Activity} from "../../../models/Activity.ts";
+import activityServices from "../../../services/ActivityServices.ts";
+// import {Sorts} from "../filters/Sorts.tsx";
 import {UserActivityCard} from "./UserActivityCard/UserActivityCard.tsx";
 
 

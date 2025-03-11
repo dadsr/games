@@ -1,11 +1,10 @@
 import "./ActivityPage.css";
-import {MemoryGame} from "../memoryGame/MemoryGame.tsx";
 import {JSX, useState} from "react";
+import {MemoryGame} from "../../games/memoryGame/MemoryGame.tsx";
 import {useLocation, useNavigate} from "react-router-dom";
-import {Activity} from "../../models/Activity.ts";
-import shuffle from "../../utils/Shuffles.ts";
-import {DataModeEnum} from "../../models/DataModeEnum.ts";
-import {getRandomColor} from "../../utils/RandomColor.ts";
+import {Activity} from "../../../models/Activity.ts";
+import shuffle from "../../../utils/Shuffles.ts";
+import {DataModeEnum} from "../../../models/enums/DataModeEnum.ts";
 
 interface LocationState {
     state: {
@@ -22,12 +21,11 @@ export function ActivityPage(): JSX.Element {
     const [gameStarted, setGameStarted] = useState(false);
     const [gameData, setGameData] = useState<string[]>([]);
 
-
     const handleGameStart = () => {
         const combinedData = shuffle(
             (activity.dataMode == DataModeEnum.IDENTICAL)?
                 [...activity.items.map(item => item.data1), ...activity.items.map(item => item.data1)]
-            : activity.items.flatMap(item => [item.data1, item.data2])
+                : activity.items.flatMap(item => [item.data1, item.data2])
         );
         setGameData(combinedData);
         setGameStarted(true);
@@ -42,18 +40,24 @@ export function ActivityPage(): JSX.Element {
         });
     };
 
+
+    const renderContent = () => {
+        if (gameStarted) {
+            return <MemoryGame activity={activity} gameData={gameData} />;
+        }
+        return (
+            <div className="activity-controls">
+                <button onClick={handleGameStart}>Start Game</button>
+                <button onClick={handleEditActivity}>Edit Activity</button>
+            </div>
+        );
+    };
+
+
     return (
         <div className="ActivityPage">
             <h1>Memory Card Game</h1>
-            {!gameStarted && (
-                <button onClick={handleGameStart}>Start Game</button>
-                <button onClick={handleEditActivity}>Edit Activity</button>
-            )}
-            <div className="game-container">
-                {gameStarted && (
-                    <MemoryGame/>
-                )}
-            </div>
+            {renderContent()}
         </div>
     );
 }

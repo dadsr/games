@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {Activity} from "../../../models/Activity.ts";
+import {Activity} from "../../../../models/Activity.ts";
 import {JSX} from "react";
 
 interface activityProps {

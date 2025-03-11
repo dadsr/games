@@ -1,17 +1,25 @@
 import "./MemoryGame.css";
-import shuffle from "../../utils/Shuffles.ts";
-import {MemoryCard} from "./MemoryCard/MemoryCard.tsx";
-import {useEffect, useState} from "react";
-import {getRandomColor} from "../../utils/RandomColor.ts";
 
-const items =["1","2","3","4","5","6","7","8","9","10"];
+import {MemoryCard} from "./memoryCard/MemoryCard.tsx";
+import {useEffect, useState} from "react";
+import {getRandomColor} from "../../../utils/RandomColor.ts";
+import {Activity} from "../../../models/Activity.ts";
+
+
+// const items =["1","2","3","4","5","6","7","8","9","10"];
 const defaultState = { index: -1, item: "" };
 const maxColumns:number = 5;
 const minColumns:number = 3;
 
-export function MemoryGame(): React.JSX.Element {
+interface memoryGameProps {
+    activity: Activity;
+    gameData: string[];
+}
 
-    // const [gameData, setGameData] = useState<{ data: string; color: string }[]>([]);
+export function MemoryGame(props: memoryGameProps): React.JSX.Element {
+    const {activity, gameData} = props;
+
+    const [cardsData, setCardsData] = useState<{ data: string; color: string }[]>([]);
     const columns = Math.min(maxColumns,Math.max(minColumns, Math.floor(Math.sqrt(gameData.length))));
 
     const [firstCard, setFirstCard] = useState(defaultState);
@@ -21,12 +29,13 @@ export function MemoryGame(): React.JSX.Element {
     const [matchedCards, setMatchedCards] = useState<string[]>([]);
     const [moves, setMoves] = useState(0);
 
-    // useEffect(() => {
-    //     const combinedData = shuffle(
-    //         [...items, ...items].map((data) => ({data, color: getRandomColor(),}))
-    //     );
-    //     setGameData(combinedData);
-    // }, [items]);
+
+    useEffect(() => {
+        setCardsData(gameData.map(card => ({
+            data: card,
+            color: getRandomColor(),
+        })));
+    }, [gameData]);
 
 
     const handleCardClick = (index: number, item:string)=> {
@@ -66,14 +75,14 @@ export function MemoryGame(): React.JSX.Element {
                 style={{ '--columns': columns } as React.CSSProperties}
             >
 
-                <div className="bord">{gameData.map ((item,index) =>(
+                <div className="bord">{cardsData.map ((card,index) =>(
                     <MemoryCard
                         key = {index}
-                        data = {item.data}
-                        backgroundColor = {item.color || "gray"}
+                        data = {card.data}
+                        backgroundColor = {card.color || "gray"}
                         isFlipped={flippedCards.includes(index)}
-                        isMatched={matchedCards.includes(item.data)}
-                        onClick = {() => handleCardClick(index,item.data)}
+                        isMatched={matchedCards.includes(card.data)}
+                        onClick = {() => handleCardClick(index,card.data)}
                     />
                 ))}
                 </div>
