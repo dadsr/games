@@ -3,7 +3,7 @@ import {JSX, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Activity} from "../../../models/Activity.ts";
 import activityServices from "../../../services/ActivityServices.ts";
-// import {Sorts} from "../filters/Sorts.tsx";
+
 import {UserActivityCard} from "./UserActivityCard/UserActivityCard.tsx";
 
 
@@ -13,27 +13,23 @@ export function MyActivities(): JSX.Element {
     const params = useParams();
     const userId = Number(params.id);
 
-    // const [userActivities, setUserActivities] = useState<Activity[]>([]);
-    const [sortedUserActivities, setSortedUserActivities] = useState<Activity[]>([]);
+    const [userActivities, setUserActivities] = useState<Activity[]>([]);
+
 
     useEffect(() => {
         setIsLoading(true);
         activityServices
             .getActivities(userId)
             .then((fetchedActivities: Activity[]) => {
-                // setUserActivities(fetchedActivities);
-                setSortedUserActivities(fetchedActivities);
+                setUserActivities(fetchedActivities);
             })
             .catch((error) => {
                 console.error("Error fetching activities:", error);
             })
             .finally(() => {
-               setIsLoading(false);
+                setIsLoading(false);
             });
     });
-
-
-
 
     return (
         <div className="MyActivities">
@@ -41,14 +37,11 @@ export function MyActivities(): JSX.Element {
                 <div>Loading...</div>
             ):(
                 <div className="activities-container">
-                    //todo
-                    {/*<Sorts activities={userActivities} setSortedActivities={setSortedUserActivities} />*/}
-
-                    {sortedUserActivities.map((activity: Activity) =>(
+                    {userActivities.map((activity: Activity) =>(
                         <UserActivityCard key = {activity.id}
                                           activity = {activity}
                         />
-                        ))}
+                    ))}
                 </div>
             )
             }

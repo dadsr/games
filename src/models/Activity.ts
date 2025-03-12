@@ -1,29 +1,26 @@
 import {Item} from "./Item.ts";
 import {User} from "./User.ts";
 import {GameTypesEnum} from "./enums/GameTypesEnum.ts";
-import {DataTypesEnum} from "./enums/DataTypesEnum.ts";
-import {DataModeEnum} from "./enums/DataModeEnum.ts";
+
 
 export class Activity {
     id: number;
     title: string;
     gameType: GameTypesEnum;
-    dataType: DataTypesEnum;
-    dataMode: DataModeEnum;
     items: Item[];
     lastUpdated: string;
     creator: User;
 
-    constructor(id: number, title: string, gameType: GameTypesEnum,  dataType: DataTypesEnum, dataMode: DataModeEnum, items: Item[]|null, lastUpdated: string|null, creator: User) {
-        this.id =id;
+
+    constructor(id: number, title: string, gameType: GameTypesEnum, items: Item[], lastUpdated: string, creator: User) {
+        this.id = id;
         this.title = title;
         this.gameType = gameType;
-        this.dataType = dataType;
-        this.dataMode = dataMode;
-        this.items = (items) ? items : [];
-        this.lastUpdated = (lastUpdated)?lastUpdated:new Date().toISOString();
+        this.items = items;
+        this.lastUpdated = lastUpdated;
         this.creator = creator;
     }
+
 }
 
 

@@ -1,12 +1,13 @@
+import {DataTypesEnum} from "./enums/DataTypesEnum.ts";
+
 export class Item {
     id: number;
-    data1: string;
-    data2: string;
+    dataType: DataTypesEnum;
 
 
-    constructor(id: number, data1: string, data2: string) {
+    constructor(id: number, dataType: DataTypesEnum) {
         this.id = id;
-        this.data1 = data1;
-        this.data2 = data2;
+        this.dataType = dataType;
     }
 }
+

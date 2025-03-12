@@ -1,9 +1,6 @@
 import "./EditActivity.css";
 import {useState} from "react";
-import {DataTypesEnum} from "../../models/DataTypesEnum.ts";
-import {Activity} from "../../models/Activity.ts";
-import {Item} from "../../models/Item.ts";
-import {Data} from "../../models/Data.ts";
+
 import {useLocation} from "react-router-dom";
 
 const maxItems:number = 20;

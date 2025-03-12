@@ -21,6 +21,8 @@ export function ActivityPage(): JSX.Element {
     const [gameStarted, setGameStarted] = useState(false);
     const [gameData, setGameData] = useState<string[]>([]);
 
+
+    // todo
     const handleGameStart = () => {
         const combinedData = shuffle(
             (activity.dataMode == DataModeEnum.IDENTICAL)?
@@ -52,7 +54,6 @@ export function ActivityPage(): JSX.Element {
             </div>
         );
     };
-
 
     return (
         <div className="ActivityPage">
